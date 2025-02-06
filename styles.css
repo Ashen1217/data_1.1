@@ -1,0 +1,162 @@
+/*-----------------*/
+/* CUSTOM STYLES */
+/*-----------------*/
+
+/* Animations (ඇනිමේශන්) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+.animate-fadeIn { animation: fadeIn 0.6s ease-out; }
+.animate-slideIn { animation: slideIn 0.5s ease-out; }
+
+/* Basic Styles (සාමාන්‍ය ස්ටයිල්) */
+body {
+  font-family: sans-serif;
+  position: relative;
+  background-color: #f7fafc;
+}
+
+/* Form Container (පෝරමය තියෙන කොටස) */
+.form-container {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* Error Highlighting (වැරදි පෙන්වන විදිහ) */
+.highlight-error,
+.validation-error-style {
+  border: 3px solid #e53e3e !important;
+  background-color: #fed7d7 !important;
+}
+
+/* Form Input Styles (input fields වල ස්ටයිල්) */
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="date"],
+.form-container select {
+  border: 2px solid #e2e8f0;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  width: 100%;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  font-size: 1rem;
+}
+
+/* Input Focus Styles (input එකක් උඩ click කරාම/select උනාම) */
+.form-container input[type="text"]:focus,
+.form-container input[type="number"]:focus,
+.form-container input[type="date"]:focus,
+.form-container select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* Radio and Checkbox Styles (රේඩියෝ බටන් සහ චෙක්බොක්ස්) */
+.form-container input[type="radio"],
+.form-container input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+/* Radio and Checkbox Label Styles (ඒවට අදාල ලේබල්) */
+.form-container .space-y-3 > label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Submit Button Styles (submit button එකේ ස්ටයිල්) */
+.form-container button[type="submit"] {
+  background-color: #4c51bf;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #434190;
+}
+
+/* Spinner Animation ( කැරකෙන රවුම) */
+.form-container .spinner {
+  display: none;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.form-container .spinner > div {
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid transparent;
+  border-top-color: #ffffff;
+  border-radius: 50%;
+}
+
+
+
+/* Heading Styles (தலைப்பு பாங்குகள்) */
+.form-container h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4a5568;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 0.5rem;
+}
+/* Added this style to the select element */
+.form-container select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1.25em;
+}
+.form-container select:focus {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234338ca' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+}
+
+/* Responsive Adjustments (පොඩි ස්ක්‍රීන් වලට හරියන්න හදන එක) */
+@media (max-width: 639px) { /* Tailwind's 'sm' breakpoint */
+  .form-container .grid.md\:grid-cols-2 > div {
+    grid-column: span 2 / span 2; /* Make columns full width */
+  }
+
+   /* Adjust spacing and font size for smaller screens */
+  .form-container .p-6.md\:p-8 {
+      padding: 1rem; /* Padding අඩු කරනවා */
+  }
+  .form-container .space-y-8 > * + * {
+      margin-top: 1rem; /* Margin අඩු කරනවා */
+  }
+  .form-container h2 {
+    font-size: 1.25rem; /* Heading font size අඩු කරනවා */
+    margin-bottom: 0.75rem;
+  }
+}

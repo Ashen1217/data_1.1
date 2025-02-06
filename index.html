@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSL RED CARPET 2025 - Participation Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css" type="text/css">
+    <link href="https://unpkg.com/heroicons@^1.0.0/outline/chevron-right.svg" rel="stylesheet">
+    <style>
+      @media (max-width: 639px) { /* Tailwind's 'sm' breakpoint */
+        .form-container .grid.md\:grid-cols-2 > div {
+          grid-column: span 2 / span 2; /* Make columns full width */
+        }
+         /* Adjust spacing and font size for smaller screens */
+        .form-container .p-6.md\:p-8 {
+            padding: 1rem;
+        }
+        .form-container .space-y-8 > * + * {
+            margin-top: 1rem;
+        }
+        .form-container h2 {
+          font-size: 1.25rem; /* Smaller font size for headings */
+          margin-bottom: 0.75rem;
+        }
+      }
+    </style>
+</head>
+<body class="min-h-screen p-4 bg-gray-100">
+    <div class="form-container">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-500 to-purple-500 p-8 text-center">
+                <h1 class="text-3xl font-bold text-white">DSL RED CARPET 2025</h1>
+                <p class="text-white/80 mt-2">We lead the way...!</p>
+            </div>
+
+            <form id="participantForm" class="p-6 md:p-8 space-y-8 relative">
+              <div id="loading-animation" class="hidden mt-4 flex items-center justify-center gap-2">
+                    <p>Checking for duplicates...</p>
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                </div>
+
+                <div id="thankYouMessage" class="animate-fadeIn" style="display: none">
+                    <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-md relative" role="alert">
+                        <strong class="font-bold">Thank you!</strong>
+                        <span class="block sm:inline"> Your application has been submitted.</span>
+                    </div>
+                </div>
+
+                <div id="error-message" class="hidden animate-fadeIn mt-4">
+                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md relative" role="alert">
+                        <strong class="font-bold">Error!</strong>
+                        <span id="error-text" class="block sm:inline"></span>
+                    </div>
+                </div>
+
+                <div style="display: block;" id="formInputs">
+                    <div id="companyDetailsSection" class="animate-fadeIn">
+                        <h2 class="text-xl font-semibold text-blue-800 mb-6">Company Details</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="companyName">Company Name *</label>
+                                 <select id="companyName" name="companyName" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none"></select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="customerCode">Customer Code *</label>
+                                <input type="text" id="customerCode" name="customerCode" required class="w-full p-3 border-2 rounded-lg" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="participantInfoSection" class="animate-fadeIn">
+                      <h2 class="text-xl font-semibold text-blue-800 mb-6">Participant Information</h2>
+                      <div class="grid md:grid-cols-2 gap-6">
+                          <div>
+                              <label class="block text-gray-700 mb-2 font-semibold" for="participantName">Full Name *</label>
+                              <input type="text" id="participantName" name="participantName" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          </div>
+                          <div>
+                              <label class="block text-gray-700 mb-2 font-semibold" for="surname">Surname *</label>
+                              <input type="text" id="surname" name="surname" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          </div>
+                          <div>
+                              <label class="block text-gray-700 mb-2 font-semibold" for="otherNames">Other Names</label>
+                              <input type="text" id="otherNames" name="otherNames" class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                          </div>
+                      </div>
+                  </div>
+
+                    <div id="personalDetailsSection" class="animate-fadeIn">
+                        <h2 class="text-xl font-semibold text-blue-800 mb-6">Personal Details</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold">Gender *</label>
+                                <div class="space-y-3">
+                                    <label class="flex items-center gap-2">
+                                        <input type="radio" name="gender" value="Male" required class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                        Male
+                                    </label>
+                                    <label class="flex items-center gap-2">
+                                        <input type="radio" name="gender" value="Female" class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                        Female
+                                    </label>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="dateOfBirth">Date of Birth *</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="age">Age *</label>
+                                <input type="number" id="age" name="age" min="18" required class="w-full p-3 border-2 rounded-lg" readonly>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="mobileNumber">Mobile Number *</label>
+                                <input type="text" id="mobileNumber" name="mobileNumber" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                                 <p id="mobileNumberError" class="hidden text-red-500 text-sm mt-1"></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="passportDetailsSection" class="animate-fadeIn">
+                        <h2 class="text-xl font-semibold text-blue-800 mb-6">Passport Details</h2>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="passportNumber">Passport Number *</label>
+                                <input type="text" id="passportNumber" name="passportNumber" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" pattern="[A-Z]{1}[0-9]{7,9}">
+                                <p id="passportNumberError" class="hidden text-red-500 text-sm mt-1"></p>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="issueDate">Issue Date *</label>
+                                <input type="date" id="issueDate" name="issueDate" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold" for="expiryDate">Expiry Date *</label>
+                                <input type="date" id="expiryDate" name="expiryDate" required class="w-full p-3 border-2 rounded-lg" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="preferencesSection" class="animate-fadeIn">
+                        <h2 class="text-xl font-semibold text-blue-800 mb-6">Preferences</h2>
+                         <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                 <label class="block text-gray-700 mb-2 font-semibold" for="tshirtSize">T-Shirt Size *</label>
+                                <select id="tshirtSize" name="tshirtSize" required class="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none">
+                                    <option value="" disabled selected>Select a size</option>
+                                    <option value="S">Small (S)</option>
+                                    <option value="M">Medium (M)</option>
+                                    <option value="L">Large (L)</option>
+                                    <option value="XL">Extra Large (XL)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-700 mb-2 font-semibold">Meal Preference *</label>
+                                <div class="space-y-3">
+                                    <label class="flex items-center gap-2">
+                                        <input type="radio" name="mealPreference" value="Vegetarian" required class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                        Vegetarian
+                                    </label>
+                                    <label class="flex items-center gap-2">
+                                        <input type="radio" name="mealPreference" value="Non-Vegetarian" class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                        Non-Vegetarian
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="additionalParticipantsSection" class="animate-fadeIn">
+                        <h2 class="text-xl font-semibold text-blue-800 mb-6">Additional Participants</h2>
+                        <div class="space-y-3">
+                            <label class="flex items-center gap-2">
+                                <input type="radio" name="additionalParticipants" value="Yes" required class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                Yes, I have additional participants
+                            </label>
+                            <label class="flex items-center gap-2">
+                                <input type="radio" name="additionalParticipants" value="No" class="w-5 h-5 text-blue-600 focus:ring-blue-500">
+                                No additional participants
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                         <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition-all flex items-center justify-center gap-2">
+                            <span id="buttonText">Submit Application</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" id="spinner" style="display: none;">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
