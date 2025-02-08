@@ -43,11 +43,12 @@ body {
   background-color: #ffe6e6 !important;
 }
 
-/* Form Input Styles (text, number, date, select) */
-.form-container input[type="text"],
-.form-container input[type="number"],
-.form-container input[type="date"],
-.form-container select {
+/* Form Input Styles (text, number, date, select, and tel) */
+.form-container #formInputs input[type="text"],
+.form-container #formInputs input[type="number"],
+.form-container #formInputs input[type="date"],
+.form-container #formInputs select,
+.form-container #formInputs input[type="tel"] { /* Added tel type */
   border: 2px solid #000000; /* Black border */
   padding: 10px;
   border-radius: 0.5rem; /* Rounded corners (8px equivalent) */
@@ -57,15 +58,15 @@ body {
 }
 
 /* Styles when input fields are focused */
-.form-container input[type="text"]:focus,
-.form-container input[type="number"]:focus,
-.form-container input[type="date"]:focus,
-.form-container select:focus {
+.form-container #formInputs input[type="text"]:focus,
+.form-container #formInputs input[type="number"]:focus,
+.form-container #formInputs input[type="date"]:focus,
+.form-container #formInputs input[type="tel"]:focus, /* Added tel type */
+.form-container #formInputs select:focus {
   outline: none;  /* Remove the default browser outline */
   border-color: #007bff; /* Change border color to blue */
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25); /* Add a light blue glow */
 }
-
 /* Radio and Checkbox Styles */
 .form-container input[type="radio"],
 .form-container input[type="checkbox"] {
@@ -127,23 +128,20 @@ body {
   visibility: hidden; /* Hide text when loading */
 }
 
-
 /* --- Search Results Container Styles --- */
-/* Styles the search results box */
 #searchResults {
-    border: 1px solid #ccc;  /* Light gray border */
-    border-radius: 8px;     /* Rounded corners */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    background-color: white; /* White background */
-    padding: 8px; /* Add some padding inside the box */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 8px;
     z-index: 10;  /*  VERY IMPORTANT: Makes sure it appears ABOVE other elements */
     position: absolute; /*  VERY IMPORTANT:  Positions it relative to the input */
     display: none;  /* Hide it initially */
     max-height: 200px;  /* Limit the height, make it scrollable */
     overflow-y: auto;   /* Add vertical scrollbar if needed */
-    width: calc(100% - 2rem); /*  width eka adjust karanna */
+    width: calc(100% - 2rem);
 }
-
 
 /* --- Individual Search Result Item Styles --- */
 /* Styles each individual search result (each company name) */
@@ -157,7 +155,6 @@ body {
 #searchResults > div:hover {
     background-color: #f0f8ff; /* Light blue background on hover */
 }
-
 /* Add a border-bottom to all result items except the last one */
 #searchResults > div:not(:last-child){
     border-bottom: 1px solid #eee;
