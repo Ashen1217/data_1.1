@@ -129,28 +129,33 @@ body {
 
 
 /* --- Search Results Container Styles --- */
+/* Styles the search results box */
 #searchResults {
-  border: 1px solid #ccc;          /* Light gray border */
-  border-radius: 8px;             /* Rounded corners */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* Subtle shadow */
-  background-color: white;        /* White background */
-  padding: 8px;                   /* Inner padding */
-  z-index: 10;                    /* Ensure it's above other elements */
-  position: relative;             /* Needed for z-index */
-  display: none;                  /* **Initially hidden** */
-  max-height: 200px;              /* Maximum height */
-  overflow-y: auto;               /* Vertical scrollbar if needed */
+    border: 1px solid #ccc;  /* Light gray border */
+    border-radius: 8px;     /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: white; /* White background */
+    padding: 8px; /* Add some padding inside the box */
+    z-index: 10;  /*  VERY IMPORTANT: Makes sure it appears ABOVE other elements */
+    position: absolute; /*  VERY IMPORTANT:  Positions it relative to the input */
+    display: none;  /* Hide it initially */
+    max-height: 200px;  /* Limit the height, make it scrollable */
+    overflow-y: auto;   /* Add vertical scrollbar if needed */
+    width: calc(100% - 2rem); /*  width eka adjust karanna */
 }
+
 
 /* --- Individual Search Result Item Styles --- */
+/* Styles each individual search result (each company name) */
 #searchResults > div {
-  padding: 8px 12px;              /* Padding inside each item */
-  cursor: pointer;                /* Change cursor on hover */
-  transition: background-color 0.2s ease; /* Smooth background transition */
+    padding: 8px 12px;      /* Padding inside each item */
+    cursor: pointer;        /* Change the cursor to a pointer (hand) on hover */
+    transition: background-color 0.2s ease; /* Smooth background transition */
 }
 
+/* Hover effect for search results */
 #searchResults > div:hover {
-  background-color: #f0f8ff;      /* Light blue background on hover */
+    background-color: #f0f8ff; /* Light blue background on hover */
 }
 
 /* Add a border-bottom to all result items except the last one */
@@ -159,8 +164,8 @@ body {
 }
 
 /* --- No Results Message Styles --- */
+/* Styles for the "No matching companies found" message */
 #searchResults p {
-  padding: 8px 12px;
-  color: #777;                    /* Gray text color */
+    padding: 8px 12px;
+    color: #777; /* Gray text color */
 }
-
