@@ -1,5 +1,5 @@
 // VERY IMPORTANT: Replace this with your *ACTUAL* deployed Google Apps Script web app URL.
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby8kcJT4MpPtlPrPweGAbJKB7GpYgi31LzxlM9-TRkcYdARMmGOlMLzdJZNNJaDswU9/exec'; // !!! CHANGE THIS !!!
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw_GTDAxLqnHufN8hr7v-dkrkesQH5UOrl0aqpV3H7Wbf5YzC--q3TFdXLL3wBIi9Eb/exec'; // !!! CHANGE THIS !!!
 
 // Calculates age in years (or months if less than 1 year).
 function calculateAge(dob) {
@@ -170,6 +170,75 @@ function scrollToTop() {
     });
 }
 
+//Name validation
+function validateNameField(inputElement, errorElementId) {
+  const nameRegex = /^[a-zA-Z\s]+$/; // අකුරුයි හිස්තැනුයි විතරයි allow කරන්නේ
+  const value = inputElement.value;
+  const errorDiv = document.getElementById(errorElementId);
+
+  if (!nameRegex.test(value)) {
+    errorDiv.textContent = "Invalid characters in name. Please use only letters and spaces.";
+    inputElement.classList.add('validation-error-style');
+  } else {
+    errorDiv.textContent = '';
+    inputElement.classList.remove('validation-error-style');
+  }
+}
+
+// Event listeners for name fields
+const participantNameInput = document.getElementById('participantName');
+participantNameInput.addEventListener('input', function() {
+  let value = this.value;
+    //මෙතන තමයි වැඩිපුර space අයින් කරන්නේ
+ value = value.replace(/ +(?= )/g, ''); // Keep multiple spaces between words
+  this.value = value;
+  validateNameField(this, 'participantNameError');
+});
+
+const surnameInput = document.getElementById('surname');
+surnameInput.addEventListener('input', function() {
+    let value = this.value;
+     value = value.replace(/ +(?= )/g, ''); // Keep multiple spaces
+    this.value = value;
+  validateNameField(this, 'surnameError');
+});
+
+const otherNamesInput = document.getElementById('otherNames');
+if (otherNamesInput) {
+    otherNamesInput.addEventListener('input', function() {
+       let value = this.value;
+       value = value.replace(/ +(?= )/g, ''); // Keep multiple spaces
+        this.value = value;
+        validateNameField(this, 'otherNamesError');
+    });
+}
+
+// Event listener for mobile number
+const mobileNumberInput = document.getElementById('mobileNumber');
+mobileNumberInput.addEventListener('input', function(){
+    const mobileNumber = this.value;
+    const mobileNumberErrorDiv = document.getElementById('mobileNumberError');
+
+     // Regular expression for a simple Sri Lankan mobile number format
+    const mobileRegex = /^07[0-9]{8}$/;
+
+    // Remove non-numeric characters (for extra safety)
+    this.value = this.value.replace(/[^0-9]/g, '');
+
+    if (!mobileRegex.test(mobileNumber)) {
+        mobileNumberErrorDiv.textContent = "Invalid mobile number format.  Use 07XXXXXXXX.";
+        this.classList.add('validation-error-style');
+    }
+    else if (mobileNumber.length != 10){
+        mobileNumberErrorDiv.textContent = "Mobile Number must have 10 digits.";
+        this.classList.add('validation-error-style');
+    }
+     else {
+        mobileNumberErrorDiv.textContent = '';
+        this.classList.remove('validation-error-style');
+    }
+});
+
 // Handles form submission (async because it uses fetch).
 document.getElementById('participantForm').addEventListener('submit', async e => {
     e.preventDefault(); // Prevent default form submission.
@@ -284,7 +353,7 @@ document.getElementById('participantForm').addEventListener('submit', async e =>
             }else if(result.error.includes("issueDate")){
                 document.getElementById('issueDateError').textContent = "Please Select Passport Issue Date";
             }else if(result.error.includes("expiryDate")){
-                document.getElementById('expiryDateError').textContent = "Please Enter a valid Passport Expiry Date";
+                document.getElementById('expiryDateError').textContent = "Please Enter Expiry Date";
             }else if(result.error.includes("tshirtSize")){
                 document.getElementById('tshirtSizeError').textContent = "Please Select T-Shirt Size";
             }else if(result.error.includes("mealPreference")){
